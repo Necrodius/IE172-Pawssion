@@ -33,7 +33,7 @@ CREATE TABLE Rescue (
     description TEXT,
     rescueStatus VARCHAR(100),
     adoptedTo INTEGER REFERENCES Users(userID),
-    rescuePic VARCHAR(255),
+    rescuePic VARCHAR(255)
 );
 
 -- Create the Application table
@@ -51,7 +51,8 @@ CREATE TABLE Application (
     whyAdopt TEXT,
     interviewDate DATE,
     interviewTime TIME,
-    approval BOOLEAN
+    approval BOOLEAN,
+    adoptedTo INTEGER REFERENCES Users(userID)
 );
 
 -- Create the Adoption table
@@ -84,10 +85,10 @@ VALUES
 ('Boni', 'Cat', 'Female', 1, 'Persian', 'None', 'Playful and curious kitten.', 'Available', NULL, 'https://www.vetmed.wisc.edu/wp-content/uploads/2022/12/lina-angelov-Ah_QC2v2alE-unsplash-1200x960.jpg');
 
 -- Insert demo data for Application table
-INSERT INTO Application (userID, householdNo, householdSupport, rescueID, ownershipExperience, vetCheck, petsCaredList, petsCaredStatus, foundPawssion, whyAdopt, idPic, interviewDate, interviewTime, approval, adoptedTo)
+INSERT INTO Application (userID, householdNo, householdSupport, rescueID, ownershipExperience, vetCheck, petsCaredList, petsCaredStatus, foundPawssion, whyAdopt, interviewDate, interviewTime, approval, adoptedTo)
 VALUES
-(1, 4, 'Supportive', 1, 'Previously owned a Labrador.', TRUE, 'Labrador', 'Healthy', 'Social Media', 'Looking for a companion.', '2024-01-15', '10:00:00', TRUE),
-(2, 3, 'Neutral', 2, 'Owned a cat before.', TRUE, 'Siamese', 'Healthy', 'Friend Recommendation', 'Want to provide a loving home.', '14:00:00', FALSE);
+(1, 4, 'Supportive', 1, 'Previously owned a Labrador.', TRUE, 'Labrador', 'Healthy', 'Social Media', 'Looking for a companion.', '2024-01-15', '10:00:00', TRUE, 1),
+(2, 3, 'Neutral', 2, 'Owned a cat before.', TRUE, 'Siamese', 'Healthy', 'Friend Recommendation', 'Want to provide a loving home.', '2024-02-15', '14:00:00', FALSE, NULL);
 
 -- Insert demo data for Adoption table
 INSERT INTO Adoption (userID, rescueID, applicationID)
